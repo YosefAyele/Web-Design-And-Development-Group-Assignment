@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LoginPage</title>
     <link rel="icon" type="image/png" href="Images/LogoIcon2.png">
-    
+
     <link rel="stylesheet" href=".\bootstrap-5.0.2-dist\css\bootstrap.min.css">
     <script defer src=".\bootstrap-5.0.2-dist\js\bootstrap.min.js"></script>
 
@@ -19,124 +19,171 @@
 
 <body>
 
-    <header
-        class="header container-fluid position-sticky z-index-1 top-0 justify-content-center justify-content-between bg-primary d-flex m-0 p-2 mb-4 w-100">
-        <nav class="navbar navbar-expand-lg w-100">
-            <div class="container-fluid">
-                <img src="Images/Logo2.png" alt="logo of mother bet website" class="header__logo m-4  rounded" width="150px">
-                <button class=" navbar-toggler d-flex d-lg-none flex-column position-absolute top-50 end-0 m-4"
-                    type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarNav" aria-controls="navbarNav"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <div class="header__nav navbar-nav position-absolute mt-4 top-50 end-0 d-flex justify-content-end w-100 mx-4">
-                        <a href="../index.html"
-                            class="header__nav--ellipse header__nav__home nav-link active fs-3 text-decoration-none text-white border border-dark rounded-circle p-1 px-3 text-center mx-1 "
-                            aria-current="page">Home</a>
-                        <a href="aboutus.html"
-                            class="header__nav--ellipse header__nav__aboutus nav-link  fs-3 text-decoration-none text-white border border-dark rounded-circle p-1 px-3 text-center mx-1">AboutUs</a>
-                        <a href="contactPage.html"
-                            class="header__nav--ellipse header__nav__contact nav-link  fs-3 text-decoration-none text-white border border-dark rounded-circle p-1 px-3 text-center mx-1">Contact</a>
-                        <a href="loginPage.html"
-                            class="header__nav--ellipse header__nav__login nav-link  fs-3 text-decoration-none text-white border border-dark rounded-circle p-1 px-3 text-center mx-1">Login</a>
+    <nav class="navbar navbar-expand-md bg-body-tertiary bg-dark bg gradient  px-5 navbar-dark mb-1 fixed-top ">
+        <div class="container-fluid">
+            <img src="./Images/Logo2.png" alt="logo of mother bet website" class="header__logo navbar-brand m-4 rounded"
+                width="50x">
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
+                aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end align-center" id="main-nav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active text-warning  px-3" href="/index.html">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-warning  px-3" href="./aboutus.html">About Us</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-warning  px-3" href="./contactPage.html"> Contact Us </a>
+                    </li>
+
+                    <li class="nav-item">
+
+                        <button class="bg-warning rounded border-0">
+                            <a class="nav-link text-white    px-3" href="./loginPage.html">Log in</a>
+                        </button>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="my-5">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <h2 class="text-center mt-5 pt-5">Login</h2>
+                    <form>
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <input type="text" class="form-control" id="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Password:</label>
+                            <input type="password" class="form-control" id="pwd">
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary my-3 ">Login</button>
+                        </div>
+                    </form>
+                    <div class="my-1 text-center">
+                        <button class="btn btn-light mx-2">
+                            <i class="fab fa-google"></i> Login with Google
+                        </button>
+                        <button class="btn btn-light mx-2">
+                            <i class="fab fa-facebook-f"></i> Login with Facebook
+                        </button>
+                    </div>
+                    <!-- Button trigger modal -->
+                    <div class="d-flex justify-content-center">
+
+
+                        <p>Don't have an account?</p>
+                        <button type="button" class="btn btn-primary mx-3" data-bs-toggle="modal"
+                            data-bs-target="#signUpModal">
+                            Sign Up
+                        </button>
+
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog"
+                        aria-labelledby="signUpModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="signUpModalLabel">Sign Up</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="username">Username</label>
+                                            <input type="text" class="form-control" id="username"
+                                                placeholder="Enter username">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Email">Email Address</label>
+                                            <input type="email" class="form-control" id="email"
+                                                area-describedby="emailHelp" placeholder="Enter your email">
+                                            <small id="emailHelp" class="form-text text-muted">We'll never share your
+                                                email with anyone else.</small>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password">Password</label>
+                                            <input type="password" class="form-control" id="password"
+                                                placeholder="Enter password">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="confirmPassword">Confirm Password</label>
+                                            <input type="password" class="form-control" id="confirmPassword"
+                                                placeholder="Confirm password">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Sign Up</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </nav>
-        <div class="header__lang d-flex position-absolute top-0 end-0 m-4">language EN<img
-                src="Images/icons8-drop-down-50.png" alt="Drop down icon to select the language"
-                class="header__lang__drop-down" width="17px" height="17px">
-        </div>
-    </header>
-    <main>
-        <a href="delivery.html" class="d-flex justify-content-end"><img
-                src="Images/food-delivery-design-vector-illustration-260nw-270046043 .jpg" alt="Food delivery"
-                class="delivery img-fluid  d-block" width="25px" height="25px"></a>
-
-        <div class="login text-center border border-dark p-4 container w-100 m-auto" style="width: fit-content !important;">
-            <div class="login__title">Login</div>
-            <hr>
-            <div class="login__google d-flex border w-50">
-                <img src="Images/google.png" alt="Google symbol" class="login__google__image" width="25px"
-                    height="25px" />
-                <div class="mx-1">Login with google</div>
-            </div>
-            <div class="login__facebook border d-flex justify-content-end m-2" style="width: fit-content !important; float: right;">
-                <img src="Images/facebook-logo-493.png" alt="Facebook symbol" class="login__facebook__image"
-                    width="25px" height="25px"/>
-                <div class="mx-1">Login with facebook</div>
-            </div>
-            <br>
-            <div class="login__or d-flex">Or</div>
-            <hr>
-            <br>
-            <form action="" class="login__form">
-                <div class="d-flex my-1">
-                    <label for="login__form__username ">User Name:</label>
-                    <input type="text" name="username" class="w-5 " id="login__form__username" placeholder="johndoe"
-                        value="" required>
-
-                </div>
-                <span id="login__form__username-message" style="color:red"> </span>
-                <div class="d-flex my-2">
-                    <label for="login__form__password">Password:</label>
-                    <input type="text" name="password" class="w-100 " id="login__form__password" placeholder="********"
-                        value="" required>
-                </div>
-                <span id="login__form__password-message" style="color:red"> </span>
-            </form>
-            <button class="button__login bg-primary border rounded text-white fs-4" type="submit"
-                onclick="Validator()">Login</button>
-            <a href="#">Forgot password?</a>
-            <hr>
-            Don't have an account?
-            <button class="button__signup bg-primary border rounded text-white fs-4" type="submit">SIGN UP</button>
-        </div>
 
     </main>
-        <footer class="container-fluid w-100 pt-5 mt-5 ">
+    <footer class="container-fluid w-100 pt-5 mt-5 ">
 
         <div class="container-fluid bg-dark text-light footer wow fadeIn w-100" data-wow-delay="0.1s">
             <div>
                 <div class="row g-5 container-fluid w-100">
                     <div class="col-lg-3 col-md-6">
-                        <img src="./Images/Logo2.png"class="pt-5" alt="logo photo">
+                        <img src="./Images/Logo2.png" class="pt-5" alt="logo photo">
                     </div>
-                    
+
                     <div class="col-lg-3 col-md-6">
                         <h3 class="text-primary">ADDRESS<div><span></span></div>
                         </h3>
 
                         <p>5 KILLO</p>
                         <p>ADDIS ABABA</p>
-                        <p>Ethiopia</p>
-                        <p>Email: <a href="mailto: MotherBet22@gmail.com" class="footer__address__email">MotherBet22@gmail.com</a></p>
-                        
-                        <h6 >dail up<a href="tel:+251-98-403-1038" class="footer__address__phone">+251-98-403-1038</a></h6>
+                        <p>Ethiopia bla bla </p>
+                        <p>Email: <a href="mailto: MotherBet22@gmail.com"
+                                class="footer__address__email">MotherBet22@gmail.com</a></p>
+
+                        <h6>dail up<a href="tel:+251-98-403-1038" class="footer__address__phone">+251-98-403-1038</a>
+                        </h6>
                         <hr>
 
                     </div>
-
-
                     <div class="col-lg-3 ml-auto">
-                        
-                            <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4 text-center ">
-                                PAGES</h4>
-                                <ul class="list-unstyled">
-                                    <a class="btn btn-link link-warning" href="/index.html" style="text-decoration:none;">Home page</a>
-                                <a class="btn btn-link link-warning " href="./src/aboutus.html"
+
+                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4 text-center ">
+                            PAGES</h4>
+                        <ul class="list-unstyled">
+                            <a class="btn btn-link link-warning" href="/index.html" style="text-decoration:none;">Home
+                                page</a>
+                            <a class="btn btn-link link-warning " href="./src/aboutus.html"
                                 style="text-decoration:none;align-items:center">About us</a>
-                            <a class="btn btn-link link-warning" href="./delivery.html"
-                                style="text-decoration:none ;align-items:center">delivery page</a>
+
                             <a class="btn btn-link link-warning" href="./ContactPage.html"
                                 style="text-decoration:none;align-items:center">Contact us</a>
-                            <a class="btn btn-link link-warning" href="./MekdiMB.html" style="text-decoration:none">Mekdi
-                                </a>
+                            <a class="btn btn-link link-warning" href="./MekdiMB.html"
+                                style="text-decoration:none">Mekdi
+                            </a>
                             <a class="btn btn-link link-warning" href="./loginPage.html"
-                                style="text-decoration:none;align-items:center">login pages</a>
+                                style="text-decoration:none;align-items:center">Login</a>
                             <a class="btn btn-link link-warning" href="./SaronMB.html"
-                                style="text-decoration:none;align-items:center">saron </a>
+                                style="text-decoration:none;align-items:center">Saron</a>
                             <a class="btn btn-link link-warning" href="./Campus-fast-foodMB.html"
                                 style="text-decoration:none;align-items:center">Campus fast-foodMB</a>
                         </ul>
@@ -144,11 +191,10 @@
                     <div class="col-lg-3 col-md-6">
                         <h3 class="link-primary">contact us </h3>
                         <div>
-                            <a class="btn btn-outline-light btn-social rounded-circle"
-                                href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-social rounded-circle" href="https://t.me/fooddiscout"><i class="fab fa-telegram"></i></a>
-                            
-                            
+                            <a class="btn btn-outline-light btn-social rounded-circle" href="#"><i
+                                    class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-outline-light btn-social rounded-circle" href="#"><i
+                                    class="fab fa-telegram"></i></a>
                         </div>
                         <p class="mt-3">You can use one of the above medias</p>
                     </div>
@@ -158,14 +204,4 @@
         <hr>
     </footer>
 </body>
-<style>
-    .header__nav--ellipse:hover {
-        border: 1.5px solid white !important;
-        color: rgb(14, 136, 236) !important;
-        background-color: white;
-      }
-</style>
-<!-- <script src="../Js/index.js"></script>
-<script src="../Js/login.js"></script> -->
-
 </html>
