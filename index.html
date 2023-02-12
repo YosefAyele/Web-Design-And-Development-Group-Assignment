@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+    <title>Home</title>
     <link rel="icon" type="image/png" href="./src/Images/LogoIcon2.png">
     
     <link rel="stylesheet" href="src/bootstrap-5.0.2-dist\css\bootstrap.min.css">
     <script defer src=".\bootstrap-5.0.2-dist\js\bootstrap.min.js"></script>
-    
+    <script defer src="script.js"></script>
     
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
@@ -20,7 +20,7 @@
 
 <body>
     
-    <nav class="navbar navbar-expand-md bg-body-tertiary bg-dark bg gradient  px-5 navbar-dark mb-1 " >
+    <nav class="navbar navbar-expand-md bg-body-tertiary bg-dark bg gradient  px-5 navbar-dark mb-1 fixed-top" >
         <div class="container-fluid">
             <img src="./src/Images/Logo2.png" alt="logo of mother bet website" class="header__logo navbar-brand m-4 rounded" width="50x">
             
@@ -53,24 +53,11 @@
             </div>
         </div>
     </nav>    
-        <!-- <div class=" d-flex position-absolute top-0 end-0 m-4">language EN<img
-                src="./src/Images/icons8-drop-down-50.png" alt="Drop down icon to select the language"
-                class="header__lang__drop-down" width="17px" height="17px">
-        </div> -->
+        
     
 
-    <main class=" container z-index-0 my-5 pd-5">
-        <!-- <div class=" d-flex justify-content-end">
-            <form>
-                <label for="search" class="invisible">Search</label>
-                <input type="search" name="search" class="search" placeholder="Search">
-            </form>
-            <img src="./src/Images/icons8-magnifying-glass-tilted-left-48.png" alt="Magnifying glass for search"
-                class="magnifying-glass" width="25px" height="25px">
-            <a href="./src/delivery.html"><img
-                src="./src/Images/food-delivery-design-vector-illustration-260nw-270046043 .jpg" alt="Food delivery"
-                    class="delivery  img-fluid " width="25px" height="25px"></a>
-        </div> -->
+    <main class=" container z-index-0 my-5 pd-5 pt-5">
+        
         <div class="d-flex justify-content-end pt-3 pr-3">
             <form class="form-inline d-flex">
               <input type="search" class="form-control form-control-sm mr-3 mx-2" placeholder="Search">
@@ -78,14 +65,79 @@
                 <i class="fas fa-search" ></i>
               </button>
             </form>
-            <a href="./src/delivery.html" class="btn btn-sm btn-outline-secondary mx-3">
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-sm btn-outline-secondary mx-3" data-bs-toggle="modal" data-bs-target="#orderNowModal">
               <i class="fas fa-shopping-cart"></i>
-            </a>
+              Order Now
+            </button>
+    
+            <!-- Modal -->
+            <div class="modal fade" id="orderNowModal" tabindex="-1" role="dialog" aria-labelledby="orderNowModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="orderNowModalLabel">Order Now</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="nameInput">Name</label>
+                            <input type="text" class="form-control" id="nameInput" placeholder="Enter name">
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneInput">Phone Number</label>
+                            <input type="text" class="form-control" id="phoneInput" placeholder="Enter phone number">
+                        </div>
+                        <div class="form-group">
+                            <label for="motherBetInput">MotherBet</label>
+                            <input type="text" class="form-control" id="motherBetInput" placeholder="Enter meal">
+                        </div>
+                        <div class="form-group">
+                            <label for="mealInput">Meal</label>
+                            <input type="text" class="form-control" id="mealInput" placeholder="Enter meal">
+                        </div>
+                    </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Order</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <button id="my-orders" type="button" class="btn btn-sm btn-outline-secondary mx-3" data-bs-toggle="modal" data-bs-target="#orders-modal">My Orders</button>
+
+            <div id="orders-modal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">My Orders</h5>
+                            <button type="button" class="btn close" data-bs-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <ul id="orders-list"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="no-orders-message" class="alert alert-info" style="display: none;">
+            Sorry, you don't have orders now. First order.
+            </div>
+
+
         </div>
+
+    
+  
+  
 
         <div class="row mb-1 ">
 
-            <div class="card col-md-3 mx-5 ">
+            <div class="card col-md-3 mx-5  my-5">
                 <img src="./src/Images/shiro.jpg" alt="" class="card-img-top">
                 <h4 class="display-4">Saron</h4>
                 <p class="display">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit dolore cumque, provident ut commodi culpa perspiciatis magnam expedita assumenda aperiam neque suscipit fugit sed voluptatibus? Aliquam, vero! Earum, dolor dicta!
@@ -93,7 +145,7 @@
                 <a href="./src/SaronMB.html" class="btn bg-dark text-white">Go to Sarons</a>
             </div>
 
-            <div class="card col-md-3 mx-5 ">
+            <div class="card col-md-3 mx-5 my-5">
                 <img src="./src/Images/frfr.jpg" alt="" class="card-img-top">
                 <h4 class="display-4">Mekdi</h4>
                 <p class="display">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit dolore cumque, provident ut commodi culpa perspiciatis magnam expedita assumenda aperiam neque suscipit fugit sed voluptatibus? Aliquam, vero! Earum, dolor dicta!
@@ -102,7 +154,7 @@
                 <a href="./src/MekdiMB.html" class="btn bg-dark text-white">Go to Mekdi</a>
             </div>
 
-            <div class="card col-md-3 mx-5">
+            <div class="card col-md-3 mx-5 my-5">
                 <img src="./src/Images/gomen.jpg" alt="" class="card-img-top">
                 <h4 class="display-4">Campus Fast Food</h4>
                 <p class="display">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit dolore cumque, provident ut commodi culpa perspiciatis magnam expedita assumenda aperiam neque suscipit fugit sed voluptatibus? Aliquam, vero! Earum, dolor dicta!
@@ -145,30 +197,29 @@
                             <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4 text-center ">
                                 PAGES</h4>
                                 <ul class="list-unstyled">
-                                    <a class="btn btn-link link-warning" href="./index.html" style="text-decoration:none;">home
-                                pages</a>
+                                    <a class="btn btn-link link-warning" href="./index.html" style="text-decoration:none;">Home
+                               </a>
                                 <a class="btn btn-link link-warning " href="./src/aboutus.html"
                                 style="text-decoration:none;align-items:center">About us</a>
-                            <a class="btn btn-link link-warning" href="./src/delivery.html"
-                                style="text-decoration:none ;align-items:center">delivery page</a>
+                            
                             <a class="btn btn-link link-warning" href="./src/ContactPage.html"
                                 style="text-decoration:none;align-items:center">Contact us</a>
                             <a class="btn btn-link link-warning" href="./src/MekdiMB.html" style="text-decoration:none">Mekdi
                                 </a>
                             <a class="btn btn-link link-warning" href="./src/loginPage.html"
-                                style="text-decoration:none;align-items:center">login pages</a>
+                                style="text-decoration:none;align-items:center">Login</a>
                             <a class="btn btn-link link-warning" href="./src/SaronMB.html"
-                                style="text-decoration:none;align-items:center">saron </a>
+                                style="text-decoration:none;align-items:center">Saron</a>
                             <a class="btn btn-link link-warning" href="./src/Campus-fast-foodMB.html"
-                                style="text-decoration:none;align-items:center">Campus fast-foodMB</a>
+                                style="text-decoration:none;align-items:center">Campus fast-food</a>
                         </ul>
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h3 class="link-primary">contact us </h3>
                         <div>
                             <a class="btn btn-outline-light btn-social rounded-circle"
-                                href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-social rounded-circle" href="https://t.me/fooddiscout"><i class="fab fa-telegram"></i></a>
+                                href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-outline-light btn-social rounded-circle" href="#"><i class="fab fa-telegram"></i></a>
                             
                             
                         </div>
