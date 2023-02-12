@@ -9,6 +9,8 @@ Name: 						                  Id
 
 
 we used postgre sql because of postgresSql has features which can be usefull in several ways like:
+
+
 Scalability: PostgreSQL is known for its scalability, allowing it to handle large amounts of data and user traffic with ease, making it an ideal choice for a food ordering website that may need to handle a large number of orders.
 
 Reliability: PostgreSQL is a reliable database management system that is known for its stability and durability. It can ensure that your food ordering website remains up and running even in the event of system failures or hardware crashes, ensuring that your customers can place their orders seamlessly.
