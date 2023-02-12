@@ -10,8 +10,8 @@
     <link rel="icon" type="image/png" href="./src/Images/LogoIcon2.png">
     
     <link rel="stylesheet" href="src/bootstrap-5.0.2-dist\css\bootstrap.min.css">
-    <script defer src=".\bootstrap-5.0.2-dist\js\bootstrap.min.js"></script>
-    <script defer src="script.js"></script>
+    <script defer src="src\bootstrap-5.0.2-dist\js\bootstrap.min.js"></script>
+    <script defer src="Order/script.js"></script>
     
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
@@ -100,11 +100,11 @@
                             <label for="mealInput">Meal</label>
                             <input type="text" class="form-control" id="mealInput" placeholder="Enter meal">
                         </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Order</button>
+                        </div>
                     </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Order</button>
                     </div>
                 </div>
                 </div>
@@ -112,10 +112,9 @@
 
             
 
-
-
+            
              <!-- Modal to display the order details -->
-            <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+             <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -148,27 +147,27 @@
                     </div>
                     <div class="modal-body">
                     <!-- Form to update an order -->
-                    <form>
-                        <div class="form-group">
-                        <label for="updateFood">Food</label>
-                        <input type="text" class="form-control" id="updateFood" >
-                        </div>
-                        <div class="form-group">
-                        <label for="updateMotherBet">MotherBet</label>
-                        <input type="text" class="form-control" id="updateMotherBet" >
-                        </div>
-                    </form>
+                        <form>
+                            <div class="form-group">
+                            <label for="updateFood">Food</label>
+                            <input type="text" class="form-control" id="updateFood" >
+                            </div>
+                            <div class="form-group">
+                            <label for="updateMotherBet">MotherBet</label>
+                            <input type="text" class="form-control" id="updateMotherBet" >
+                            </div>
+                            <div class="modal-footer">
+                            </div>
+                        </form>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="updateOrderButton" >UpdateInside</button>
                     </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="updateOrderButton">Update</button>
-                    </div>
+                </div>
                 </div>
                 </div>
             </div>
-            
             <!-- Button to display orders -->
-            <button class="btn btn-sm btn-outline-secondary mx-3" id="ordersButton">My Orders</button>
+            <button class="btn btn-sm btn-outline-secondary mx-3" id="ordersButton" data-bs-toggle="modal" data-bs-target="#orderModal">My Orders</button>
 
 
         </div>

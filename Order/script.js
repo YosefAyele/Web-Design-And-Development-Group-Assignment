@@ -1,23 +1,32 @@
+//ORDERING FEATURE
 const orderModal = document.getElementById('orderNowModal');
 const orderForm = orderModal.querySelector('form');
 const submitButton = orderForm.querySelector('button[type="submit"]');
-
+const motherBet = document.getElementById("motherBetInput")
+const food = document.getElementById("mealInput")
+console.log(orderForm)
 
 
 orderForm.addEventListener('submit', async (event) => {
+  console.log("create order called")
   event.preventDefault();
 
-  const formData = new FormData(orderForm);
-  const order = Object.fromEntries(formData);
-
+  const order = {
+    food : food.value,
+    motherbet: motherBet.value
+  }
+  
   submitButton.disabled = true;
   submitButton.innerHTML = 'Sending...';
 
   try {
-    const response = await fetch('/api/orders', {
+    console.log(typeof localStorage.getItem('auth'), "here is athe auth")
+    console.log(JSON.stringify(order))
+    const response = await fetch('http://localhost:3000/orders/create_order', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        "Authorization" : "bearer " + localStorage.getItem('auth')
       },
       body: JSON.stringify(order)
     });
@@ -44,12 +53,19 @@ const ordersModal = document.getElementById('orderModal');
 const ordersList = document.getElementById('orderList');
 const Food = document.getElementById('updateFood');
 const MotherBet = document.getElementById('updateMotherBet');
-
+const updateButton = document.getElementById('updateOrderButton')
+const updateModal = document.getElementById("updateModal")
 
 // fetch orders and display in modal
 myOrdersButton.addEventListener("click", function(){
+    console.log("my orders called")
     // fetch request to get orders
-    fetch("/api/orders")
+    fetch("http://localhost:3000/orders/get_order" , {
+      method: "GET",
+      headers: {
+      'Content-Type': 'application/json',
+      "Authorization" : "bearer "+localStorage.getItem('auth')
+    },})
       .then(res => res.json())
       .then(data => {
         if (data.length > 0) {
@@ -59,24 +75,40 @@ myOrdersButton.addEventListener("click", function(){
           // display orders in the modal
           data.forEach(order => {
             let orderItem = document.createElement("li");
-            orderItem.innerHTML = `${order.food} ${order.motherBet}`;
+            orderItem.innerHTML = `${order.food} ${order.motherbet}`;
             ordersList.appendChild(orderItem);
     
             // add update button to each order
             let updateBtn = document.createElement("button");
+
             updateBtn.innerHTML = "Update";
-            updateBtn.addEventListener("click", function(){
-              // prompt user to change food and motherBet
-              let newFood = Food.value
-              let newMotherBet = MotherBet.value
+            updateBtn.setAttribute("data-bs-toggle", "modal")
+            updateBtn.setAttribute("data-bs-target", "#updateModal")
+            updateBtn.setAttribute("type","button")
+            
+            updateBtn.addEventListener("click",function(){
+              if (updateModal.style.display === "none"){
+                updateModal.style.display = "block"
+              }
+
+            })
+            
+
+            updateButton.addEventListener("click", async function(){
+              
+                
+                
+              const updatedFood = Food.value
+              const updatedMotherbet = MotherBet.value
     
               // send PATCH request to update order
-              fetch(`/api/orders/${order.id}`, {
+             response = await fetch(`http://localhost:3000/orders/update_order/${order.id}`, {
                 method: 'PATCH',
                 headers: {
-                  'Content-Type': 'application/json'
+                  'Content-Type': 'application/json',
+                  "Authorization" : "bearer "+localStorage.getItem('auth')
                 },
-                body: JSON.stringify({ food: newFood, motherBet: newMotherBet })
+                body: JSON.stringify({ food: updatedFood, motherbet: updatedMotherbet })
               })
               .then(res => res.json())
               .then(data => {
@@ -85,6 +117,8 @@ myOrdersButton.addEventListener("click", function(){
                 orderItem.innerHTML = `${data.food} ${data.motherBet}`;
               })
               .catch(error => console.error(error));
+
+
             });
             orderItem.appendChild(updateBtn);
     
@@ -94,8 +128,13 @@ myOrdersButton.addEventListener("click", function(){
             cancelBtn.addEventListener("click", function(){
               if (confirm("Are you sure?")) {
                 // send DELETE request to cancel order
-                fetch(`/api/orders/${order.id}`, {
+                fetch(`http://localhost:3000/orders/delete_order/${order.id}`, {
                   method: 'DELETE'
+                  ,
+                headers: {
+                  'Content-Type': 'application/json',
+                  "Authorization" : "bearer "+localStorage.getItem('auth')
+                },
                 })
                 .then(res => res.json())
                 .then(data => {
@@ -108,7 +147,7 @@ myOrdersButton.addEventListener("click", function(){
             });
             orderItem.appendChild(cancelBtn);
         });
-        ordersModal.classList.toggle("show")
+        // ordersModal.classList.toggle("show")
     
         
           
@@ -118,4 +157,3 @@ myOrdersButton.addEventListener("click", function(){
       })
       .catch(error => console.error(error));
   });
-  
