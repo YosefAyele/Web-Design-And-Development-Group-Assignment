@@ -39,55 +39,83 @@ orderForm.addEventListener('submit', async (event) => {
 });
 
 
-const myOrdersButton = document.getElementById('my-orders');
-const ordersModal = document.getElementById('orders-modal');
-const ordersList = document.getElementById('orders-list');
-const noOrdersMessage = document.getElementById('no-orders-message');
+const myOrdersButton = document.getElementById('ordersButton');
+const ordersModal = document.getElementById('orderModal');
+const ordersList = document.getElementById('orderList');
+const Food = document.getElementById('updateFood');
+const MotherBet = document.getElementById('updateMotherBet');
 
-myOrdersButton.addEventListener('click', async () => {
-  try {
-    const response = await fetch('/api/orders');
-    const orders = await response.json();
 
-    if (orders.length === 0) {
-      ordersModal.style.display = 'none';
-      noOrdersMessage.style.display = 'block';
-      return;
-    }
-
-    noOrdersMessage.style.display = 'none';
-    ordersList.innerHTML = '';
-    orders.forEach((order) => {
-      const listItem = document.createElement('li');
-      listItem.innerHTML = `${order.food} ${order.motherBet}`;
-
-      const cancelButton = document.createElement('button');
-      cancelButton.innerHTML = 'Cancel';
-      cancelButton.addEventListener('click', async () => {
-        const confirmation = window.confirm('Are you sure?');
-        if (!confirmation) {
-          return;
+// fetch orders and display in modal
+myOrdersButton.addEventListener("click", function(){
+    // fetch request to get orders
+    fetch("/api/orders")
+      .then(res => res.json())
+      .then(data => {
+        if (data.length > 0) {
+          // clear previous order data
+          ordersList.innerHTML = "";
+  
+          // display orders in the modal
+          data.forEach(order => {
+            let orderItem = document.createElement("li");
+            orderItem.innerHTML = `${order.food} ${order.motherBet}`;
+            ordersList.appendChild(orderItem);
+    
+            // add update button to each order
+            let updateBtn = document.createElement("button");
+            updateBtn.innerHTML = "Update";
+            updateBtn.addEventListener("click", function(){
+              // prompt user to change food and motherBet
+              let newFood = Food.value
+              let newMotherBet = MotherBet.value
+    
+              // send PATCH request to update order
+              fetch(`/api/orders/${order.id}`, {
+                method: 'PATCH',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ food: newFood, motherBet: newMotherBet })
+              })
+              .then(res => res.json())
+              .then(data => {
+                console.log(data);
+                // update order in the modal
+                orderItem.innerHTML = `${data.food} ${data.motherBet}`;
+              })
+              .catch(error => console.error(error));
+            });
+            orderItem.appendChild(updateBtn);
+    
+            // add cancel button to each order
+            let cancelBtn = document.createElement("button");
+            cancelBtn.innerHTML = "Cancel";
+            cancelBtn.addEventListener("click", function(){
+              if (confirm("Are you sure?")) {
+                // send DELETE request to cancel order
+                fetch(`/api/orders/${order.id}`, {
+                  method: 'DELETE'
+                })
+                .then(res => res.json())
+                .then(data => {
+                  console.log(data);
+                  // remove order from the modal
+                  orderItem.remove();
+                })
+                .catch(error => console.error(error));
+              }
+            });
+            orderItem.appendChild(cancelBtn);
+        });
+        ordersModal.classList.toggle("show")
+    
+        
+          
+        } else {
+          alert("Sorry, you don't have any orders now. Place your first order.");
         }
-
-        try {
-          const deleteResponse = await fetch(`/api/orders/${order.id}`, {
-            method: 'DELETE',
-          });
-          if (!deleteResponse.ok) {
-            throw new Error(deleteResponse.statusText);
-          }
-          listItem.remove();
-        } catch (error) {
-          console.error(error);
-        }
-      });
-
-      listItem.appendChild(cancelButton);
-      ordersList.appendChild(listItem);
-    });
-
-    ordersModal.style.display = 'block';
-  } catch (error) {
-    console.error(error);
-  }
-});
+      })
+      .catch(error => console.error(error));
+  });
+  
